@@ -43,6 +43,7 @@
       "prettier:base": "prettier \"**/*{.ts,.tsx,.js,.jsx,.css,.json,.md}\"",
       "prettier:check": "jlpm prettier:base --check",
       "stylelint": "jlpm stylelint:check --fix",
+      "test": "jupyter serverextension list",
       "watch": "run-p watch:src watch:labextension",
       "watch:src": "tsc -w",
       "watch:labextension": "jupyter labextension watch ."
@@ -70,7 +71,8 @@
       "stylelint-config-recommended": "^6.0.0",
       "stylelint-config-standard": "~24.0.0",
       "stylelint-prettier": "^2.0.0",
-      "typescript": "~4.1.3"
+      "typescript": "~4.1.3",
+      "ts-jest": "^26.0.0"
     },
     "publishConfig": {
       "access": "public"
