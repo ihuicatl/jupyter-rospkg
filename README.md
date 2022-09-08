@@ -58,12 +58,9 @@ The `jlpm` command is JupyterLab's pinned version of
 # Change directory to the jupyter_rospkg directory
 # Install package in development mode
 pip install -e .
-# Link your development version of the extension with JupyterLab
-jupyter labextension develop . --overwrite
+
 # Server extension must be manually installed in develop mode
 jupyter server extension enable jupyter_rospkg
-# Rebuild extension Typescript source after making changes
-jlpm build
 ```
 
 You can watch the source directory and run JupyterLab at the same time in different terminals to watch for changes in the extension's source and automatically rebuild the extension.
@@ -112,24 +109,6 @@ To execute them, run:
 ```sh
 pytest -vv -r ap --cov jupyter_rospkg
 ```
-
-#### Frontend tests
-
-This extension is using [Jest](https://jestjs.io/) for JavaScript code testing.
-
-To execute them, execute:
-
-```sh
-jlpm
-jlpm test
-```
-
-#### Integration tests
-
-This extension uses [Playwright](https://playwright.dev/docs/intro/) for the integration tests (aka user level tests).
-More precisely, the JupyterLab helper [Galata](https://github.com/jupyterlab/jupyterlab/tree/master/galata) is used to handle testing the extension in JupyterLab.
-
-More information are provided within the [ui-tests](./ui-tests/README.md) README.
 
 ### Packaging the extension
 
