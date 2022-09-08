@@ -28,7 +28,8 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
 ]
 dependencies = [
-    "jupyter_server>=1.6,<2"
+    "jupyter_server>=1.6,<2",
+    "rospkg"
 ]
 
 [project.optional-dependencies]
