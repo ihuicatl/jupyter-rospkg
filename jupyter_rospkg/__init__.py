@@ -22,8 +22,10 @@ def _load_jupyter_server_extension(server_app):
     server_app: jupyterlab.labapp.LabApp
         JupyterLab application instance
     """
+
+    # url_path = "ros"
     setup_handlers(server_app.web_app)
-    server_app.log.info("Registered {name} server extension".format(**data))
+    server_app.log.info(f"Registered jupyter_rospkg server extension.")
 
 
 # For backward compatibility with notebook server - useful for Binder/JupyterHub

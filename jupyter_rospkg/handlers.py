@@ -1,8 +1,8 @@
 import json
-
+import tornado
 from jupyter_server.base.handlers import APIHandler
 from jupyter_server.utils import url_path_join
-import tornado
+from .pkgs import Pkgs
 
 class RouteHandler(APIHandler):
     # The following decorator should be present on all verb methods (head, get, post,
@@ -19,6 +19,6 @@ def setup_handlers(web_app):
     host_pattern = ".*$"
 
     base_url = web_app.settings["base_url"]
-    route_pattern = url_path_join(base_url, "jupyter-rospkg", "get_example")
-    handlers = [(route_pattern, RouteHandler)]
+    route_pkgs = url_path_join(base_url, "ros", "pkgs/(.*)")
+    handlers = [(route_pkgs, Pkgs)]
     web_app.add_handlers(host_pattern, handlers)
