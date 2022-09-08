@@ -19,6 +19,10 @@ def setup_handlers(web_app):
     host_pattern = ".*$"
 
     base_url = web_app.settings["base_url"]
+    route_pattern = url_path_join(base_url, "jupyter-rospkg", "get_example")
     route_pkgs = url_path_join(base_url, "ros", "pkgs/(.*)")
-    handlers = [(route_pkgs, Pkgs)]
+    handlers = [
+        (route_pattern, RouteHandler),
+        (route_pkgs, Pkgs)
+        ]
     web_app.add_handlers(host_pattern, handlers)
