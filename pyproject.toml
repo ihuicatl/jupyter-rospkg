@@ -51,8 +51,7 @@ field = [
 ]
 file = [
     { src = "pyproject.toml", version_template = "version = \"{major}.{minor}.{patch}{channel}{release}\"" },
-    { src = "jupyter_rospkg/_version.py" },
-    { src = "package.json" },
+    { src = "jupyter_rospkg/_version.py" }
 ]
 
 [tool.tbump.version]
