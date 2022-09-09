@@ -13,7 +13,16 @@ regex = '''
   (?P<minor>\d+)
   \.
   (?P<patch>\d+)
+  ((?P<channel>a|b|rc|.dev)(?P<release>\\d+))?
   '''
+
+[[field]]
+name = "channel"
+default = ""
+
+[[field]]
+name = "release"
+default = ""
 
 [git]
 message_template = "Bump to {new_version}"
@@ -24,7 +33,7 @@ tag_template = "v{new_version}"
 # tbump.toml location.
 [[file]]
 src = "pyproject.toml" 
-version_template = "version = \"{major}.{minor}.{patch}\""
+version_template = "version = \"{major}.{minor}.{patch}{channel}{release}\""
 
 [[file]]
 src = "jupyter_rospkg/_version.py"
