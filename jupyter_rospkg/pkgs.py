@@ -1,13 +1,18 @@
 import os
 import tornado
-
 from notebook.base.handlers import IPythonHandler
+from .workspace_parser import workspace_parser
+
 
 import rospkg
 
 
 class Pkgs(IPythonHandler):
-    rospack = rospkg.RosPack()
+
+    current_workspaces = workspace_parser()
+    rospack = rospkg.RosPack(current_workspaces)
+    print("[WSP] Info : ROS_PACKAGE_PATH=", ':'.join(current_workspaces),
+          sep="")
 
     @tornado.web.authenticated
     def get(self, *args, **kwargs):
@@ -17,18 +22,19 @@ class Pkgs(IPythonHandler):
             self.write("Error - no argument supplied")
             self.finish()
             return
-        
+
         print("[PKGS] get:", args[0])
-        
+
         argslist = args[0].split('/')
-        
+
         package = argslist[0]
         file = '/'.join(argslist[1:])
         path = ""
 
-        try :
+        try:
             path = cls.rospack.get_path(package)
-        except rospkg.ResourceNotFound :
+        except rospkg.ResourceNotFound:
+            print(f"Package {package} not found")
             self.write(f"Package {package} not found")
             self.finish()
             return
